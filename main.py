@@ -1,5 +1,5 @@
 #!flask/bin/python
-from flask import Flask, request, send_from_directory
+from flask import Flask, request, send_from_directory, render_template
 import requests
 import shutil
 import os
@@ -7,10 +7,20 @@ import os
 app = Flask(__name__)
 
 
-@app.route('/', methods=['GET'])
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    url = request.args.get('url')
-    print(url)
+    error = None
+    if request.method == 'POST':
+        if len(request.form['url']) == 0 :
+            error = 'Paste URL PlS'
+        else:
+            proceed(request.form['url'])
+    return render_template('index.html', error=error)
+
+    
+
+
+def proceed(url):
     file_name = download(url)
     archive(file_name)
     move_file_to_downloads(file_name)
@@ -67,6 +77,6 @@ def archive(file_name):
 
 
 if __name__ == '__main__':
-    #app.run(debug=False)
+    #app.run(debug=True)
     from waitress import serve
     serve(app, host="0.0.0.0", port=5000)
