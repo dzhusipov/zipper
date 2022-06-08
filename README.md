@@ -1,4 +1,4 @@
-# zipper_back
+# Zipper
 
 Simple service that can be used for downloading files from internet bypassing  the coroporate firewalls.  
 Host will be available by url http://SERVER_IP:5000/
