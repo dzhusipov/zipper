@@ -1,0 +1,54 @@
+ERROR:main:Exception on / [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 2077, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1525, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1523, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1509, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/root/develop/zipper_back/main.py", line 14, in index
+    file_name = download(url)
+  File "/root/develop/zipper_back/main.py", line 23, in download
+    res = requests.get(url, stream=True)
+  File "/usr/lib/python3/dist-packages/requests/api.py", line 76, in get
+    return request('get', url, params=params, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/api.py", line 61, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 528, in request
+    prep = self.prepare_request(req)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 456, in prepare_request
+    p.prepare(
+  File "/usr/lib/python3/dist-packages/requests/models.py", line 316, in prepare
+    self.prepare_url(url, params)
+  File "/usr/lib/python3/dist-packages/requests/models.py", line 390, in prepare_url
+    raise MissingSchema(error)
+requests.exceptions.MissingSchema: Invalid URL 'None': No schema supplied. Perhaps you meant http://None?
+ERROR:main:Exception on / [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 2077, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1525, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1523, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/dist-packages/flask/app.py", line 1509, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/root/develop/zipper_back/main.py", line 14, in index
+    file_name = download(url)
+  File "/root/develop/zipper_back/main.py", line 23, in download
+    res = requests.get(url, stream=True)
+  File "/usr/lib/python3/dist-packages/requests/api.py", line 76, in get
+    return request('get', url, params=params, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/api.py", line 61, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 528, in request
+    prep = self.prepare_request(req)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 456, in prepare_request
+    p.prepare(
+  File "/usr/lib/python3/dist-packages/requests/models.py", line 316, in prepare
+    self.prepare_url(url, params)
+  File "/usr/lib/python3/dist-packages/requests/models.py", line 390, in prepare_url
+    raise MissingSchema(error)
+requests.exceptions.MissingSchema: Invalid URL 'None': No schema supplied. Perhaps you meant http://None?

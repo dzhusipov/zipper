@@ -10,6 +10,7 @@ app = Flask(__name__)
 @app.route('/', methods=['GET'])
 def index():
     url = request.args.get('url')
+    print(url)
     file_name = download(url)
     archive(file_name)
     move_file_to_downloads(file_name)
@@ -66,4 +67,6 @@ def archive(file_name):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    #app.run(debug=False)
+    from waitress import serve
+    serve(app, host="0.0.0.0", port=5000)
