@@ -1,10 +1,10 @@
 #!flask/bin/python
-from flask import Flask, request, send_from_directory, render_template
+from flask import Flask, request, redirect, render_template, send_file, url_for
 import requests
 import shutil
 import os
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='archives')
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -14,33 +14,44 @@ def index():
         if len(request.form['url']) == 0 :
             error = 'Paste URL PlS'
         else:
-            proceed(request.form['url'])
+            # redirect to route
+            return redirect(url_for('download', url=request.form['url']))
     return render_template('index.html', error=error)
 
-    
 
-
-def proceed(url):
-    file_name = download(url)
+@app.route('/download', methods=['GET'])
+def download():
+    url = request.args.get('url')
+    file_name = download_from_url(url)
     archive(file_name)
     move_file_to_downloads(file_name)
     move_file_to_archives(get_filename_without_extension(file_name) + '.tar.gz')
-    uploads = os.path.join(os.getcwd(), "archives")
-    return send_from_directory(directory=uploads, path=get_filename_without_extension(file_name) + '.tar.gz')
+    path = os.path.join(os.getcwd(), 'archives')
+    full_path = os.path.join(path, get_filename_without_extension(file_name) + '.tar.gz')
+    return send_file(full_path, attachment_filename=get_filename_without_extension(file_name) + '.tar.gz')
 
 
-def download(url):
+def download_from_url(url):
     res = requests.get(url, stream=True)
-    file_name = url.split('/')[-1]
+    file_name = get_file_name_from_url(url)
 
     if res.status_code == 200:
         with open(file_name, 'wb') as f:
             shutil.copyfileobj(res.raw, f)
-        print('Image successfully Downloaded: ', file_name)
+        print('File successfully Downloaded: ', file_name)
         print("Done!")
         return file_name
     else:
-        print('Image Couldn\'t be retrieved')
+        print('File Couldn\'t be retrieved')
+
+
+def get_file_name_from_url(url):
+    fragment_removed = url.split("#")[0]  # keep to left of first #
+    query_string_removed = fragment_removed.split("?")[0]
+    scheme_removed = query_string_removed.split("://")[-1].split(":")[-1]
+    if scheme_removed.find("/") == -1:
+        return ""
+    return os.path.basename(scheme_removed)
 
 
 # move file to directory
