@@ -26,9 +26,6 @@ Flask==2.1.2
 flatbuffers==1.12
 fonttools==4.33.3
 gast==0.4.0
-google-auth==2.8.0
-google-auth-oauthlib==0.4.6
-google-pasta==0.2.0
 grpcio==1.47.0
 gunicorn==20.1.0
 h5py==3.7.0
@@ -65,7 +62,6 @@ nbformat==5.4.0
 nest-asyncio==1.5.5
 notebook==6.4.12
 notebook-shim==0.1.0
-numpy==1.23.0
 oauthlib==3.2.0
 opt-einsum==3.3.0
 packaging==21.3
@@ -75,7 +71,6 @@ parso==0.8.3
 pexpect==4.8.0
 pickleshare==0.7.5
 Pillow==9.1.1
-prometheus-client==0.14.1
 prompt-toolkit==3.0.30
 protobuf==3.19.4
 psutil==5.9.1
@@ -101,9 +96,6 @@ six==1.16.0
 sniffio==1.2.0
 soupsieve==2.3.2.post1
 stack-data==0.3.0
-tensorboard==2.9.1
-tensorboard-data-server==0.6.1
-tensorboard-plugin-wit==1.8.1
 termcolor==1.1.0
 terminado==0.15.0
 threadpoolctl==3.1.0
