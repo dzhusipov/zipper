@@ -14,3 +14,6 @@ docker build --no-cache -t zipper .
 
 docker run zipper -p 5000:5000
 ```
+
+
+Deploying to Heroku is done
