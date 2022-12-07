@@ -14,3 +14,4 @@ docker build --no-cache -t zipper .
 
 docker run zipper -p 5000:5000
 ```
+heroku error
