@@ -4,8 +4,9 @@ WORKDIR /usr/src/app
 
 COPY requirements.txt ./
 
+# RUN apt-get install pkg-config libhdf5-dev
 # for proxies 
-RUN pip install --no-cache-dir --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host=files.pythonhosted.org -r requirements.txt
+RUN pip install -r requirements.txt
 COPY . .
 EXPOSE 5000
 
